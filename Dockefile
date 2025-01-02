@@ -1,0 +1,20 @@
+# Sử dụng base image Node.js nếu bạn đang chạy ứng dụng Node.js
+FROM node:16
+
+# Thiết lập thư mục làm việc trong container
+WORKDIR /app
+
+# Sao chép file package.json và package-lock.json
+COPY package*.json ./
+
+# Cài đặt dependencies
+RUN npm install
+
+# Sao chép mã nguồn vào container
+COPY . .
+
+# Mở cổng (nếu cần)
+EXPOSE 3000
+
+# Command để chạy ứng dụng
+CMD ["node", "server.js"]
