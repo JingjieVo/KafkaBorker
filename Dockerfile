@@ -1,5 +1,5 @@
 # Sử dụng image Kafka chính thức
-FROM bitnami/kafka:latest
+FROM apache/kafka:latest
 
 # Thiết lập biến môi trường cần thiết
 ENV KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181

@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   zookeeper:
-    image: bitnami/zookeeper:latest
+    image: zookeeper:latest
     container_name: zookeeper
     ports:
       - "2181:2181"
@@ -11,7 +11,7 @@ services:
       ZOO_TICK_TIME: 2000
 
   kafka:
-    image: bitnami/kafka:latest
+    image: apache/kafka:latest
     container_name: kafka
     ports:
       - "9092:9092"
