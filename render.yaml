@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: kafka-broker
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: KAFKA_ZOOKEEPER_CONNECT
+        value: zookeeper:2181
+      - key: KAFKA_LISTENERS
+        value: PLAINTEXT://0.0.0.0:9092
+      - key: KAFKA_ADVERTISED_LISTENERS
+        value: PLAINTEXT://kafka-broker.onrender.com:9092
+      - key: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
+        value: "1"

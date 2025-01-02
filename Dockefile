@@ -1,20 +1,11 @@
-# Sử dụng base image Node.js nếu bạn đang chạy ứng dụng Node.js
-FROM node:16
+# Sử dụng image Kafka chính thức
+FROM bitnami/kafka:latest
 
-# Thiết lập thư mục làm việc trong container
-WORKDIR /app
+# Thiết lập biến môi trường cần thiết
+ENV KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+ENV KAFKA_CFG_LISTENERS=PLAINTEXT://0.0.0.0:9092
+ENV KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka-broker.onrender.com:9092
+ENV KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=1
 
-# Sao chép file package.json và package-lock.json
-COPY package*.json ./
-
-# Cài đặt dependencies
-RUN npm install
-
-# Sao chép mã nguồn vào container
-COPY . .
-
-# Mở cổng (nếu cần)
-EXPOSE 3000
-
-# Command để chạy ứng dụng
-CMD ["node", "server.js"]
+# Expose cổng Kafka
+EXPOSE 9092
